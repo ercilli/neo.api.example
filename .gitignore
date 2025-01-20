@@ -1,39 +1,56 @@
-# TypeScript build info files
-*.tsbuildinfo
+# compiled output
+/dist
+/node_modules
+/build
 
-# Optional npm cache directory
-.npm
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
-# Optional eslint cache
-.eslintcache
+# OS
+.DS_Store
 
-# Optional REPL history
-.node_repl_history
+# Tests
+/coverage
+/.nyc_output
 
-# Output of 'npm pack'
-*.tgz
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# Yarn Integrity file
-.yarn-integrity
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # dotenv environment variable files
-.env.*.local
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
 
-# Optional stylelint cache
-.stylelintcache
+# temp directory
+.temp
+.tmp
 
-# Optional Prettier cache
-.prettiercache
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
-# Optional coverage directory
-coverage/
-
-# Optional test output
-/test-results/
-
-# Optional build directory
-/build/
-
-# Optional temp directories
-/temp/
-.tmp/
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
