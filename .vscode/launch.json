@@ -4,25 +4,23 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/${input:programPath}",
-      "preLaunchTask": "build",
-      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
-      "sourceMaps": true,
+      "name": "Debug NestJS (TypeScript)",
+      "program": "${workspaceFolder}/src/api/main.ts",
       "cwd": "${workspaceFolder}",
       "runtimeArgs": ["-r", "ts-node/register", "-r", "tsconfig-paths/register"],
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/src/**/*.ts"],
       "envFile": "${workspaceFolder}/.env"
-    }
-  ],
-  "inputs": [
+    },
     {
-      "type": "pickString",
-      "id": "programPath",
-      "description": "Select the entry point of your program",
-      "options": [
-        "src/main.ts",
-        "src/app.module.ts"
-      ]
+      "type": "node",
+      "request": "launch",
+      "name": "Debug NestJS (Compiled)",
+      "program": "${workspaceFolder}/dist/api/main.js",
+      "cwd": "${workspaceFolder}",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"],
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
