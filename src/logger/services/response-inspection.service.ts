@@ -6,6 +6,7 @@ import { ResponseLoggingModel } from '../models/response-logging.model';
 export class ResponseInspectionService {
   extractResponseData(res: Response, duration: number, body: any): ResponseLoggingModel {
     const model = new ResponseLoggingModel();
+    model.logType = 'RESPONSE';
     model.httpResponseStatusCode = res.statusCode.toString();
     model.httpResponseStatusPhrase = res.statusMessage || '-';
     model.httpResponseHeaders = JSON.stringify(res.getHeaders() || {});
