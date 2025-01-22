@@ -6,6 +6,7 @@ import { RequestLoggingModel } from '../models/request-logging.model';
 export class RequestInspectionService {
   extractRequestData(req: Request): RequestLoggingModel {
     const model = new RequestLoggingModel();
+    model.logType = 'REQUEST';
     model.httpRequestAddress = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
     model.httpRequestQueryString = JSON.stringify(req.query || {});
     model.httpRequestMethod = req.method;
