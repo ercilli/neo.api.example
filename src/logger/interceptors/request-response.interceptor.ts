@@ -24,6 +24,9 @@ export class RequestResponseInterceptor implements NestInterceptor {
     const requestData = await this.requestInspectionService.extractRequestData(req);
     this.logStorageService.setRequestData(requestData);
 
+    // Registrar el log de la solicitud entrante
+    this.logExecutorService.logIncomingRequest();
+
     return next.handle().pipe(
       map((body) => {
         const duration = Date.now() - startTime;
@@ -32,8 +35,8 @@ export class RequestResponseInterceptor implements NestInterceptor {
         const responseData = this.responseInspectionService.extractResponseData(res, duration, body);
         this.logStorageService.setResponseData(responseData);
 
-        // Registrar logs
-        this.logExecutorService.logRequestResponse();
+        // Registrar el log de la respuesta entrante
+        this.logExecutorService.logIncomingResponse();
 
         return body;
       }),
