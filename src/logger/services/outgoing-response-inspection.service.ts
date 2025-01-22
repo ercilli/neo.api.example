@@ -10,6 +10,7 @@ export class OutgoingResponseInspectionService {
     duration: number,
   ): InterceptorResponseLoggingModel {
     const model = new InterceptorResponseLoggingModel();
+    model.logType = 'OUTGOING_RESPONSE';
     model.outgoingHttpResponseStatusCode = status.toString();
     model.outgoingHttpResponseHeaders = JSON.stringify(headers || {});
     model.outgoingHttpResponseBody = JSON.stringify(body || {});
