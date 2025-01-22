@@ -26,7 +26,10 @@ export class OutgoingRequestResponseInterceptor implements NestInterceptor {
       req.headers,
       req.body,
     );
-    this.logStorageService.setRequestData(outgoingRequestLog);
+    this.logStorageService.setOutgoingRequestData(outgoingRequestLog);
+
+    // Registrar el log de la solicitud saliente
+    this.logExecutorService.logOutgoingRequest();
 
     return next.handle().pipe(
       tap((response) => {
@@ -39,10 +42,10 @@ export class OutgoingRequestResponseInterceptor implements NestInterceptor {
           response.data,
           duration,
         );
-        this.logStorageService.setResponseData(outgoingResponseLog);
+        this.logStorageService.setOutgoingResponseData(outgoingResponseLog);
 
-        // Registrar logs
-        this.logExecutorService.logRequestResponse();
+        // Registrar el log de la respuesta saliente
+        this.logExecutorService.logOutgoingResponse();
       }),
     );
   }
