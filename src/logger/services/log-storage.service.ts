@@ -1,27 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { AsyncLocalStorage } from 'async_hooks';
 
 @Injectable()
 export class LogStorageService {
-  private readonly asyncLocalStorage = new AsyncLocalStorage<Map<string, any>>();
-
-  run(callback: () => void): void {
-    this.asyncLocalStorage.run(new Map<string, any>(), callback);
-  }
+  private requestLog: any;
+  private responseLog: any;
+  private outgoingRequestLog: any;
+  private outgoingResponseLog: any;
 
   setRequestData(data: any): void {
-    this.asyncLocalStorage.getStore()?.set('request', data);
+    this.requestLog = data;
   }
 
   getRequestData(): any {
-    return this.asyncLocalStorage.getStore()?.get('request');
+    return this.requestLog;
   }
 
   setResponseData(data: any): void {
-    this.asyncLocalStorage.getStore()?.set('response', data);
+    this.responseLog = data;
   }
 
   getResponseData(): any {
-    return this.asyncLocalStorage.getStore()?.get('response');
+    return this.responseLog;
+  }
+
+  setOutgoingRequestData(data: any): void {
+    this.outgoingRequestLog = data;
+  }
+
+  getOutgoingRequestData(): any {
+    return this.outgoingRequestLog;
+  }
+
+  setOutgoingResponseData(data: any): void {
+    this.outgoingResponseLog = data;
+  }
+
+  getOutgoingResponseData(): any {
+    return this.outgoingResponseLog;
   }
 }
