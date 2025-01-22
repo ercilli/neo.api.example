@@ -6,13 +6,31 @@ import { formatLog } from '../utils/log-formatter.util';
 export class LogExecutorService {
   constructor(private readonly logStorageService: LogStorageService) {}
 
-  logRequestResponse(): void {
+  logIncomingRequest(): void {
     const requestLog = this.logStorageService.getRequestData();
-    const responseLog = this.logStorageService.getResponseData();
+    if (requestLog) {
+      console.log(formatLog(requestLog.toDictionary()));
+    }
+  }
 
-    console.log(formatLog({
-      request: requestLog?.toDictionary(),
-      response: responseLog?.toDictionary(),
-    }));
+  logIncomingResponse(): void {
+    const responseLog = this.logStorageService.getResponseData();
+    if (responseLog) {
+      console.log(formatLog(responseLog.toDictionary()));
+    }
+  }
+
+  logOutgoingRequest(): void {
+    const outgoingRequestLog = this.logStorageService.getOutgoingRequestData();
+    if (outgoingRequestLog) {
+      console.log(formatLog(outgoingRequestLog.toDictionary()));
+    }
+  }
+
+  logOutgoingResponse(): void {
+    const outgoingResponseLog = this.logStorageService.getOutgoingResponseData();
+    if (outgoingResponseLog) {
+      console.log(formatLog(outgoingResponseLog.toDictionary()));
+    }
   }
 }
