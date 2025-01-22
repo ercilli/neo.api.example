@@ -10,6 +10,7 @@ export class OutgoingRequestInspectionService {
     body: any,
   ): InterceptorRequestLoggingModel {
     const model = new InterceptorRequestLoggingModel();
+    model.logType = 'OUTGOING_REQUEST';
     model.outgoingHttpRequestAddress = url;
     model.outgoingHttpRequestMethod = method;
     model.outgoingHttpRequestHeaders = JSON.stringify(headers || {});
