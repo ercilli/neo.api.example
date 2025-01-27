@@ -4,13 +4,17 @@ import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-@Controller('app') // Asegúrate de que el decorador @Controller esté presente
+@Controller('app')
 export class AppController {
   constructor(private readonly httpService: HttpService) {}
 
   @Get('complex-objects')
   getComplexObjects(): Observable<any> {
-    return this.httpService.get('https://localhost:7158/api/Complex/GetListOfComplexObjects', {
+    const apiUri = process.env.API_URI;
+    if (!apiUri) {
+      throw new Error('COMPLEX_OBJECTS_API_URI is not defined');
+    }
+    return this.httpService.get(apiUri, {
       headers: { 'accept': 'text/plain' },
       httpsAgent: new (require('https').Agent)({ rejectUnauthorized: false }) // Deshabilitar verificación SSL
     }).pipe(
