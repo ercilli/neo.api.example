@@ -3,6 +3,8 @@ import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { TraceContextService } from '../tracer/services/trace-context.service';
 import { Request, Response, NextFunction } from 'express';
+import * as dotenv from 'dotenv';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
