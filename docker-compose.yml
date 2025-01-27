@@ -24,3 +24,4 @@ services:
       NODE_OPTIONS: "--max-old-space-size=512"
       UV_THREADPOOL_SIZE: 64
       NODE_TLS_REJECT_UNAUTHORIZED: '0'
+      API_URI: "http://host.docker.internal:81/api/Complex/GetListOfComplexObjects"
